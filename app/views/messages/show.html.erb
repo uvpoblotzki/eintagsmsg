@@ -1,0 +1,5 @@
+<p>This is an <em>Eintagsmessage</em>; you can only view it ones, after that it will be deleted.</p>
+
+<%= form_for(@message, url: {action: 'destroy'}, method: 'delete') do |f| %>
+  <%= f.submit 'Show Eintagsmessage' %>
+<% end %>
