@@ -2,13 +2,25 @@
 <html>
 <head>
   <title>Eintagsmsg</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <div class="header">
+      <h3 class="text-muted">Eintagsmessage</h3>
+    </div>
+    <div class="jumbotron">
+      <%= yield %>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <em>Eintagsmessage</em> is a simple one time messageing service: Create, share, read once, auto deleted. 
+      </div>
+    </div>
+    <div class="fotter"></div>
+  </div>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

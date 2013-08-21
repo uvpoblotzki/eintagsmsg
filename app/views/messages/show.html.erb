@@ -1,5 +1,14 @@
-<p>This is an <em>Eintagsmessage</em>; you can only view it ones, after that it will be deleted.</p>
+<form id="message-link" class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="link-to-self">Link to this message</label>
+    <input type="text" class="form-control" id="link-to-self" value="<%= message_url(@message)%>">
+  </div>
+  <button type="submit" class="btn btn-primary">Copy link</button>
+</form>
 
-<%= form_for(@message, url: {action: 'destroy'}, method: 'delete') do |f| %>
-  <%= f.submit 'Show Eintagsmessage' %>
+
+<p class="alert alert-danger">This is an <em>Eintagsmessage</em>; you can only view it ones! After that, it will be deleted.</p>
+
+<%= form_for(@message, url: {action: 'destroy'}, method: 'delete', class: 'form-control') do |f| %>
+  <%= f.submit 'Show Eintagsmessage', class: 'btn btn-lg btn-success' %>
 <% end %>

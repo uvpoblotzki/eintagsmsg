@@ -9,18 +9,22 @@ class MessagesController < ApplicationController
       @message = Message.find(params[:id])
     rescue
       logger.debug("#{Time.now} couldn't find message with ID #{params[:id]}")
-      render "public/404.html", status: 400
+      respond_to do |format| 
+        render "public/404.html", status: 400
+      end
     end
   end
 
   def create
     @message = Message.new(params[:message])
 
-    if @message.save
-      redirect_to @message
-    else
-      logger.info("#{Time.now} couldn't save message: #{@message.errors}")
-      render action: 'index'
+    respond_to do |format|
+      if @message.save
+        format.html {redirect_to @message}
+      else
+        logger.info("#{Time.now} couldn't save message: #{@message.errors}")
+        format.html {render action: 'index'}
+      end
     end
   end
 
@@ -31,7 +35,9 @@ class MessagesController < ApplicationController
       logger.info("#{Time.now} destroyed message ID ##{@message.id}")
     rescue
       logger.debug("#{Time.now} couldn't find message with ID #{params[:id]}")
-      render "public/404.html", status: 400
+      respond_to do |format| 
+        format.html {render "public/404.html", status: 400}
+      end
     end
 
   end
